@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Categorias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [value]="selectedCategory" (ionChange)="segmentChanged($event)" scrollable>
+    <ion-segment-button *ngFor="let category of categories" [value]="category">
+      <ion-label class="ion-text-capitalize">{{ category }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="!loading">
+    <app-article *ngFor="let article of articles" [article]="article"></app-article>
+  </ion-list>
+</ion-content>
